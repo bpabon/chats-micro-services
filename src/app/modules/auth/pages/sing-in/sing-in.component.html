@@ -1,22 +1,15 @@
-<!-- login form -->
-<form class="my-10 space-y-6" [formGroup]="form" (ngSubmit)="onSubmit()">
+<app-skeleton-loader
+  *ngIf="isSkeletonLoader"
+  [lines]="5"
+  [showCircle]="true"
+  lineHeight="h-5"
+  lineWidth="w-4/4"
+></app-skeleton-loader>
+<form   *ngIf="!isSkeletonLoader" class="my-10 space-y-6" [formGroup]="form" (ngSubmit)="onSubmit()">
     <div class="text-center">
-      <h2 class="text-foreground mb-1 text-3xl font-semibold">Hello Again <span class="text-primary">!</span></h2>
-      <p class="text-muted-foreground text-sm">Enter your credential to access your account.</p>
+      <h2 class="text-foreground mb-1 text-3xl font-semibold">Hola de nuevo <span class="text-primary">!</span></h2>
+      <p class="text-muted-foreground text-sm">Ingrese sus credenciales para acceder al sistema.</p>
     </div>
-  
-    <div routerLink="/dashboard">
-      <app-button full impact="bold" tone="light" shape="rounded" size="medium">
-        <svg-icon src="icons/google-logo.svg" [svgClass]="'h-6 w-6 mr-2'"> </svg-icon>
-        Log in with Google
-      </app-button>
-    </div>
-  
-    <div
-      class="before:border-muted after:border-muted my-4 flex items-center before:mt-0.5 before:flex-1 before:border-t after:mt-0.5 after:flex-1 after:border-t">
-      <p class="text-muted-foreground mx-4 mb-0 text-center text-sm">or</p>
-    </div>
-  
     <div class="space-y-3 text-left">
       <div class="form__group">
         <div class="relative">
@@ -31,15 +24,16 @@
             for="email"
             [ngClass]="{ 'peer-focus:text-destructive!': submitted && f['email'].errors }"
             class="bg-background text-muted-foreground peer-focus:text-primary absolute top-2 left-1 z-10 origin-[0] -translate-y-4 scale-95 transform px-2 text-sm duration-300 peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:scale-100 peer-focus:top-2 peer-focus:-translate-y-4 peer-focus:scale-95 peer-focus:px-2">
-            Email address
+            Correo electrónico
           </label>
         </div>
         <div *ngIf="submitted && f['email'].errors" class="is__invalid-error">
-          <div *ngIf="f['email'].errors['required']">Required field</div>
-          <div *ngIf="f['email'].errors['email']">Email must be an email address valid</div>
+          <div *ngIf="f['email'].errors['required']">Campo obligatorio</div>
+          <div *ngIf="f['email'].errors['email']">
+            El correo electrónico debe ser una dirección de correo electrónico válida</div>
         </div>
       </div>
-  
+
       <div class="form__group">
         <div class="relative">
           <input
@@ -53,7 +47,7 @@
             for="password"
             [ngClass]="{ 'peer-focus:text-destructive!': submitted && f['password'].errors }"
             class="bg-background text-muted-foreground peer-focus:text-primary absolute top-2 left-1 z-10 origin-[0] -translate-y-4 scale-95 transform px-2 text-sm duration-300 peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:scale-100 peer-focus:top-2 peer-focus:-translate-y-4 peer-focus:scale-95 peer-focus:px-2">
-            Password
+            Contraseña
           </label>
           <span class="text-muted-foreground absolute top-2.5 right-5 cursor-pointer" (click)="togglePasswordTextType()">
             <svg-icon
@@ -67,33 +61,33 @@
           </span>
         </div>
         <div *ngIf="submitted && f['password'].errors" class="is__invalid-error">
-          <div *ngIf="f['password'].errors['required']">Required field</div>
+          <div *ngIf="f['password'].errors['required']">Campo obligatorio</div>
         </div>
       </div>
     </div>
-  
+
     <div class="mb-2 flex items-center justify-between space-x-3">
       <div class="flex items-center">
         <input id="remember-me" name="remember-me" type="checkbox" />
-        <label for="remember-me" class="text-muted-foreground ml-2 block text-sm"> Remember me </label>
+        <label for="remember-me" class="text-muted-foreground ml-2 block text-sm"> Recordarme </label>
       </div>
-  
+
       <app-button routerLink="/auth/forgot-password" impact="none" tone="primary" shape="rounded" size="small">
-        Forgot your password?
+       Olvidaste la contraseña?
       </app-button>
     </div>
-  
+
     <!-- Submit Button -->
     <div>
-      <app-button full impact="bold" tone="primary" shape="rounded" size="medium">Sign in</app-button>
+      <app-button full   [loading]="isLoading"
+       impact="bold" tone="primary" shape="rounded" size="medium">Iniciar sesión</app-button>
     </div>
-  
+
     <!-- Sign-up -->
     <div class="text-muted-foreground flex items-center text-sm">
-      Not a Member yet?
+     ¿Aun no tienes una cuenta?
       <app-button routerLink="/auth/sign-up" impact="none" tone="primary" shape="rounded" size="small">
-        Sign up
+        ¿Crear cuenta?
       </app-button>
     </div>
-  </form>
-  
+</form>

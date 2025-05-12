@@ -1,4 +1,13 @@
-<button (click)="onButtonClick()" [ngClass]="classes">
+<button
+  (click)="onButtonClick()"
+  [disabled]="loading()"
+  [ngClass]="classes"
+>
+  <ng-container *ngIf="!loading(); else loadingTemplate">
     <ng-content></ng-content>
-  </button>
-  
+  </ng-container>
+  <ng-template #loadingTemplate>
+    <!-- Puedes reemplazar esto por cualquier animación spinner -->
+    <span class="animate-spin inline-block w-4 h-4 border-2 border-white border-t-transparent rounded-full"></span>
+  </ng-template>
+</button>

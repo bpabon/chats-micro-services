@@ -1,20 +1,28 @@
 import { Routes } from '@angular/router';
-export const errorRoutes: Routes = [
+import { LayoutComponent } from './layout.component';
+export const layoutRoutes: Routes = [
   {
-    path: 'dashboard',
-    loadComponent: () =>
-      import('./layout.component').then((m) => m.LayoutComponent),
-    children: [
-      {
-        path: '',
-        redirectTo: 'dashboard',
-        pathMatch: 'full',
-      },
+    path: '',
+    component: LayoutComponent,
+      children: [
+      // {
+      //   path: '',
+      //   redirectTo: 'home',
+      //   pathMatch: 'full',
+      // },
+      // {
+      //   path: 'home',
+      //   loadComponent: () =>
+      //     import('./layout.component').then(
+      //       (m) => m.LayoutComponent
+      //     ),
+      // },
       // {
       //   path: 'components',
-      //   loadComponent: () =>
-      //     import('./pages/error500/error500.component').then(
-      //       (m) => m.Error500Component
+      //   component: LayoutComponent,
+      //   loadChildren: () =>
+      //     import('../../uikit/uikit.routing').then(
+      //       (m) => m.uikitRoutes
       //     ),
       // },
       {
@@ -23,29 +31,5 @@ export const errorRoutes: Routes = [
         pathMatch: 'full',
       },
     ],
-  },
-  // {
-  //   path: 'components',
-  //   loadComponent: () =>
-  //     import('./layout.component').then((m) => m.LayoutComponent),
-  //   children: [
-  //     {
-  //       path: '',
-  //       redirectTo: 'dashboard',
-  //       pathMatch: 'full',
-  //     },
-  //     {
-  //       path: 'components',
-  //       loadComponent: () =>
-  //         import('./pages/error500/error500.component').then(
-  //           (m) => m.Error500Component
-  //         ),
-  //     },
-  //     {
-  //       path: '**',
-  //       redirectTo: 'error/404',
-  //       pathMatch: 'full',
-  //     },
-  //   ],
-  // },
+  }
 ];

@@ -6,6 +6,8 @@
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
+    "build:prod": "ng build --configuration=production",
+    "lint": "ng lint",
     "test": "ng test",
     "serve:ssr:chats-micro-services": "node dist/chats-micro-services/server/server.mjs"
   },
@@ -48,7 +50,7 @@
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "~2.1.0",
     "postcss": "^8.5.3",
-    "tailwindcss": "^4.0.7",
+    "tailwindcss": "^4.1.5",
     "typescript": "~5.6.2"
   }
 }

@@ -1,0 +1,8 @@
+<div class="flex flex-col gap-2 w-full">
+  <div *ngIf="showCircle()" class="w-12 h-12 rounded-full bg-gray-300 animate-pulse mb-2"></div>
+
+  <div *ngFor="let _ of [].constructor(lines())"
+       class="bg-gray-300 rounded animate-pulse"
+       [ngClass]="[lineHeight(), lineWidth()]">
+  </div>
+</div>

@@ -8,6 +8,7 @@ type ButtonProps = {
   shape: 'square' | 'rounded' | 'pill';
   tone: 'primary' | 'danger' | 'success' | 'warning' | 'info' | 'light';
   shadow: 'none' | 'small' | 'medium' | 'large';
+  loading: boolean;
 };
 @Component({
   selector: 'app-button',
@@ -21,6 +22,9 @@ export class ButtonComponent implements OnInit {
   shape = input<ButtonProps['shape']>('rounded');
   tone = input<ButtonProps['tone']>('primary');
   shadow = input<ButtonProps['shadow']>('none');
+  loading = input(false, {
+    transform: (value: boolean | string) => (typeof value === 'string' ? value === '' : !!value),
+  });
   full = input(false, {
     transform: (value: boolean | string) => (typeof value === 'string' ? value === '' : value),
   });
