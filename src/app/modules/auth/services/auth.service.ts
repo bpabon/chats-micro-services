@@ -1,8 +1,16 @@
 import { inject, Injectable } from '@angular/core';
 import { environment } from '../../../../environments/environment';
-import { LoginHttp, SuccessRegisterInterface,SuccessLoginInterface } from '../models/auth-http';
+import {
+  LoginHttp,
+  SuccessRegisterInterface,
+  SuccessLoginInterface,
+} from '../models/auth-http';
 import { catchError, Observable, of, tap, throwError } from 'rxjs';
-import { HttpClient,HttpErrorResponse,HttpHeaders } from '@angular/common/http';
+import {
+  HttpClient,
+  HttpErrorResponse,
+  HttpHeaders,
+} from '@angular/common/http';
 import { handleRetry, respError } from '../../../core/utils/rxjs-helpers';
 import { LocalStorageService } from '../../../core/services/local-storage.service';
 
@@ -23,23 +31,45 @@ export class AuthService {
     return this.localStorageService.get('token');
   }
   getLogin(myData: LoginHttp): Observable<SuccessLoginInterface> {
-    return this.http.post<SuccessLoginInterface>(`${this.apiUrl}/auth/v1/api/login`, myData).pipe(
-      handleRetry(2, 1000),
-      tap((res: SuccessLoginInterface) => {
-        this.localStorageService.set('token', res.token)
-      }),
-      catchError((error: HttpErrorResponse) => {
-        return respError(error);
-      })
-    );
+    return this.http
+      .post<SuccessLoginInterface>(`${this.apiUrl}/auth/v1/api/login`, myData)
+      .pipe(
+        handleRetry(2, 1000),
+        tap((res: SuccessLoginInterface) => {
+          this.localStorageService.set('token', res.token);
+        }),
+        catchError((error: HttpErrorResponse) => {
+          return respError(error);
+        })
+      );
   }
   postRegister(myData: LoginHttp): Observable<SuccessRegisterInterface> {
-    return this.http.post<SuccessRegisterInterface>(`${this.apiUrl}/auth/v1/api/registerUser`, myData).pipe(
-      handleRetry(2, 1000),
-      catchError((error: HttpErrorResponse) => {
-        return respError(error);
-      })
-    );
+    return this.http
+      .post<SuccessRegisterInterface>(
+        `${this.apiUrl}/auth/v1/api/registerUser`,
+        myData
+      )
+      .pipe(
+        handleRetry(2, 1000),
+        catchError((error: HttpErrorResponse) => {
+          return respError(error);
+        })
+      );
+  }
+  forgotPassword(
+    myData: Omit<LoginHttp, 'password'>
+  ): Observable<SuccessRegisterInterface> {
+    return this.http
+      .post<SuccessRegisterInterface>(
+        `${this.apiUrl}/auth/v1/api/recoveryPassword`,
+        myData
+      )
+      .pipe(
+        handleRetry(2, 1000),
+        catchError((error: HttpErrorResponse) => {
+          return respError(error);
+        })
+      );
   }
   logout(): void {
     this.localStorageService.remove('token');
@@ -63,7 +93,6 @@ export class AuthService {
   }
   isLoggedIn2(): boolean {
     const token = this.localStorageService.get('token');
-    return token? true: false;
+    return token ? true : false;
   }
-
 }

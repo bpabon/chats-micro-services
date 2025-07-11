@@ -56,7 +56,6 @@ export class SingInComponent implements OnInit {
         this.isLoading = false;
         this._alert.success(data.msg);
         this._router.navigate(['/home']);
-        console.log(data,'------------');
       },
       error: (error: HttpErrorResponse) => {
         this.isLoading = false;

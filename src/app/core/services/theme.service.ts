@@ -7,7 +7,7 @@ import { LocalStorageService } from './local-storage.service';
   providedIn: 'root',
 })
 export class ThemeService {
-  public theme = signal<Theme>({ mode: 'dark', color: 'base' });
+  public theme = signal<Theme>({ mode: 'light', color: 'base' });
   private isBrowser: boolean;
 
   constructor(

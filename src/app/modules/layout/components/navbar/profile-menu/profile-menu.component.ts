@@ -1,14 +1,15 @@
 import { animate, state, style, transition, trigger } from '@angular/animations';
-import { NgClass } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { AngularSvgIconModule } from 'angular-svg-icon';
 import { ThemeService } from '../../../../../core/services/theme.service';
 // import { ClickOutsideDirective } from '../../../../../shared/directives/click-outside.directive';
+import { Router } from '@angular/router';
+import { AuthService } from '../../../../auth/services/auth.service';
 
 @Component({
   selector: 'app-profile-menu',
-  imports: [NgClass, RouterLink, AngularSvgIconModule],
+  imports: [RouterLink, AngularSvgIconModule],
   templateUrl: './profile-menu.component.html',
   styleUrl: './profile-menu.component.css',
   animations: [
@@ -37,20 +38,23 @@ import { ThemeService } from '../../../../../core/services/theme.service';
 export class ProfileMenuComponent implements OnInit {
   public isOpen = false;
   public profileMenu = [
-    {
-      title: 'Your Profile',
-      icon: './icons/heroicons/outline/user-circle.svg',
-      link: '/profile',
-    },
-    {
-      title: 'Settings',
-      icon: './icons/heroicons/outline/cog-6-tooth.svg',
-      link: '/settings',
-    },
+    // {
+    //   title: 'Your Profile',
+    //   icon: 'icons/heroicons/outline/user-circle.svg',
+    //   link: '/profile',
+    //   logout: false,
+    // },
+    // {
+    //   title: 'Settings',
+    //   icon: 'icons/heroicons/outline/cog-6-tooth.svg',
+    //   link: '/settings',
+    //   logout: false,
+    // },
     {
       title: 'Log out',
-      icon: './icons/heroicons/outline/logout.svg',
+      icon: 'icons/heroicons/outline/logout.svg',
       link: '/auth',
+      logout: true,
     },
   ];
 
@@ -87,7 +91,11 @@ export class ProfileMenuComponent implements OnInit {
 
   public themeMode = ['light', 'dark'];
 
-  constructor(public themeService: ThemeService) {}
+  constructor(
+    public themeService: ThemeService,
+    private router: Router,
+    private authService: AuthService
+  ) {}
 
   ngOnInit(): void {}
 
@@ -101,6 +109,13 @@ export class ProfileMenuComponent implements OnInit {
       return { ...theme, mode: mode };
     });
   }
+  handleMenuClick(item: any): void {
+  if (item.logout) {
+    this.authService.logout();
+    this.router.navigate(['/auth']);
+  }
+}
+
 
   toggleThemeColor(color: string) {
     this.themeService.theme.update((theme) => {
