@@ -4,6 +4,8 @@ import {
   LoginHttp,
   SuccessRegisterInterface,
   SuccessLoginInterface,
+  ValidToken,
+  changePasswordInterface,
 } from '../models/auth-http';
 import { catchError, Observable, of, tap, throwError } from 'rxjs';
 import {
@@ -14,11 +16,6 @@ import {
 import { handleRetry, respError } from '../../../core/utils/rxjs-helpers';
 import { LocalStorageService } from '../../../core/services/local-storage.service';
 
-// const httpOptions = {
-//   headers: new HttpHeaders({
-//     'Content-Type':  'application/json'
-//   })
-// };
 @Injectable({
   providedIn: 'root',
 })
@@ -56,6 +53,20 @@ export class AuthService {
         })
       );
   }
+  changePassoword(myData: changePasswordInterface, token: string): Observable<SuccessRegisterInterface> {
+    return this.http
+      .put<SuccessRegisterInterface>(
+        `${this.apiUrl}/auth/v1/api/changePassword/${token}`,
+        myData
+      )
+      .pipe(
+        handleRetry(2, 1000),
+        catchError((error: HttpErrorResponse) => {
+          return respError(error);
+        })
+      );
+  }
+
   forgotPassword(
     myData: Omit<LoginHttp, 'password'>
   ): Observable<SuccessRegisterInterface> {
@@ -91,8 +102,14 @@ export class AuthService {
     }
     return of(true);
   }
-  isLoggedIn2(): boolean {
-    const token = this.localStorageService.get('token');
-    return token ? true : false;
+  checkValidJwtToken(jwt: string): Observable<ValidToken> {
+    return this.http
+      .get<ValidToken>(`${this.apiUrl}/auth/v1/jwt/validate-jwt-params/${jwt}`)
+      .pipe(
+        handleRetry(2, 1000),
+        catchError((error: HttpErrorResponse) => {
+          return respError(error);
+        })
+      );
   }
 }

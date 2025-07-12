@@ -18,7 +18,7 @@ export function handleRetry<T>(maxRetries: number = 2, delayMs: number = 1000) {
         }
       }),
       catchError((error: HttpErrorResponse) => {
-        if(!isProd) console.error('Error final tras reintentos fallidos:', error);
+        if(!isProd) console.error('Error final tres reintentos fallidos:', error);
         return throwError(() => error);
       })
     );

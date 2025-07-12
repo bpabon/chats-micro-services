@@ -32,6 +32,13 @@ export const authRoutes: Routes = [
           ),
       },
       {
+        path: 'change-password/:token',
+        loadComponent: () =>
+          import('./pages/change-password/change-password.component').then(
+            (m) => m.ChangePasswordComponent
+          ),
+      },
+      {
         path: '**',
         redirectTo: 'sign-in',
         pathMatch: 'full',
