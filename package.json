@@ -9,6 +9,7 @@
     "build:prod": "ng build --configuration=production",
     "lint": "ng lint",
     "test": "ng test",
+    "build:ssr": "ng build --configuration=production && ng run chats-micro-services:server:production",
     "serve:ssr:chats-micro-services": "node dist/chats-micro-services/server/server.mjs"
   },
   "private": true,
