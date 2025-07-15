@@ -6,6 +6,7 @@ import { provideHttpClient, withFetch, withInterceptors } from '@angular/common/
 import { provideAngularSvgIcon } from 'angular-svg-icon';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { jwtInterceptor } from './core/interceptor/jwt.interceptor';
+import { provideServerRendering } from '@angular/platform-server';
 // // import { initializeApp } from './app-init';
 // import { LoadingService } from './core/services/loading.service';
 // import { ThemeService } from './core/services/theme.service';
@@ -16,6 +17,7 @@ export const appConfig: ApplicationConfig = {
      provideRouter(routes),
      provideClientHydration(withEventReplay()),
      provideAngularSvgIcon(),
+     provideServerRendering(),
      provideAnimations(),
      provideHttpClient(
       withFetch(),
