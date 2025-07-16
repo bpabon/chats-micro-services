@@ -126,7 +126,13 @@
           "options": {
             "browserTarget": "chats-micro-services:build:production",
             "serverTarget": "chats-micro-services:server:production",
-            "routes": ["/"]
+            "routes": [
+              "/",
+              "/auth/sign-in",
+              "/auth/sign-up",
+              "/auth/forgot-password",
+              "/errors/404",
+              "/errors/500"]
           }
         }
       }
