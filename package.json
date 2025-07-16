@@ -10,7 +10,7 @@
     "lint": "ng lint",
     "test": "ng test",
     "build:ssr": "ng build --configuration=production && ng run chats-micro-services:server:production",
-    "prerender": "npm run build:ssr  --verbose && ng run chats-micro-services:prerender  --verbose",
+    "prerender": "npm run build:ssr && ng run chats-micro-services:prerender",
     "serve:ssr:chats-micro-services": "node dist/chats-micro-services/server/server.mjs"
   },
   "private": true,
