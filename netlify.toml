@@ -1,5 +1,5 @@
 [build]
-command = "npm run prerender"
+command = "npm run build:ssr"
 publish = "dist/chats-micro-services/browser"
 functions = "netlify/functions"
 
