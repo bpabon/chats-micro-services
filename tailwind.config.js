@@ -8,5 +8,11 @@ module.exports = {
     extend: {},
   },
   safelist: ['space-y-6'],
-  plugins: [],
+  plugins: [
+    require('@tailwindcss/forms'),
+    require('@tailwindcss/typography'),
+    require('@tailwindcss/aspect-ratio'),
+    require('tailwind-scrollbar'),
+  ],
+
 }
