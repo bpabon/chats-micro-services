@@ -8,7 +8,7 @@ module.exports = {
     './src/**/*.{html,ts}',
     './src/**/*.css', // si usas CSS directamente
   ],
-  safelist: ['space-y-6', 'ease-in', 'duration-100', 'transition'],
+  safelist: ['space-y-6', 'ease-in', 'duration-100', 'transition', 'space-y-4', 'space-y-2'],
   theme: {
     extend: {},
   },
