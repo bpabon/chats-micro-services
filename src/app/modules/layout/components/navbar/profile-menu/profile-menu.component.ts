@@ -6,10 +6,10 @@ import { ThemeService } from '../../../../../core/services/theme.service';
 // import { ClickOutsideDirective } from '../../../../../shared/directives/click-outside.directive';
 import { Router } from '@angular/router';
 import { AuthService } from '../../../../auth/services/auth.service';
-
+import { NgClass } from '@angular/common';
 @Component({
   selector: 'app-profile-menu',
-  imports: [RouterLink, AngularSvgIconModule],
+  imports: [RouterLink, AngularSvgIconModule, NgClass],
   templateUrl: './profile-menu.component.html',
   styleUrl: './profile-menu.component.css',
   animations: [
