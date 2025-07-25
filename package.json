@@ -1,6 +1,7 @@
   {
     "name": "chats-micro-services",
     "version": "0.0.0",
+    "displayName": "",
     "scripts": {
       "ng": "ng",
       "start": "ng serve",

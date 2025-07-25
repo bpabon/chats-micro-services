@@ -5,18 +5,18 @@ export const layoutRoutes: Routes = [
     path: '',
     component: LayoutComponent,
       children: [
-      // {
-      //   path: '',
-      //   redirectTo: 'home',
-      //   pathMatch: 'full',
-      // },
-      // {
-      //   path: 'home',
-      //   loadComponent: () =>
-      //     import('./layout.component').then(
-      //       (m) => m.LayoutComponent
-      //     ),
-      // },
+      {
+        path: '',
+        redirectTo: 'home',
+        pathMatch: 'full',
+      },
+      {
+        path: 'home',
+        loadComponent: () =>
+          import('../dashboard/dashboard.component').then(
+            (m) => m.DashboardComponent
+          ),
+      },
       // {
       //   path: 'components',
       //   component: LayoutComponent,
