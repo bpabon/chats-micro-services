@@ -1,20 +1,21 @@
 import { Routes } from '@angular/router';
 import { LayoutComponent } from './layout.component';
+import { errorRoutes } from '../error/error.routing';
 export const layoutRoutes: Routes = [
   {
     path: '',
     component: LayoutComponent,
-      children: [
+    children: [
       {
         path: '',
-        redirectTo: 'home',
+        redirectTo: 'dashboard',
         pathMatch: 'full',
       },
       {
-        path: 'home',
-        loadComponent: () =>
-          import('../dashboard/dashboard.component').then(
-            (m) => m.DashboardComponent
+        path: 'dashboard',
+        loadChildren: () =>
+          import('../dashboard/dashboard.routing').then(
+            (m) => m.dashboardhRoutes
           ),
       },
       // {
@@ -25,11 +26,15 @@ export const layoutRoutes: Routes = [
       //       (m) => m.uikitRoutes
       //     ),
       // },
-      {
-        path: '**',
-        redirectTo: 'error/404',
-        pathMatch: 'full',
-      },
+      // {
+      //   path: 'errors',
+      //   children: errorRoutes,
+      // },
+      // {
+      //   path: '**',
+      //   redirectTo: 'error/404',
+      //   pathMatch: 'full',
+      // },
     ],
-  }
+  },
 ];

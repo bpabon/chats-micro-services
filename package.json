@@ -1,7 +1,7 @@
   {
     "name": "chats-micro-services",
     "version": "0.0.0",
-    "displayName": "",
+    "displayName": "ChatHive",
     "scripts": {
       "ng": "ng",
       "start": "ng serve",
