@@ -1,0 +1,39 @@
+@media (max-width: 768px) {
+  /* Modificar el sidebar */
+  .w-64 {
+    width: 200px; /* Reduce el tamaño del sidebar */
+  }
+
+  .flex-row {
+    flex-direction: column; /* Cambiar de fila a columna en pantallas pequeñas */
+  }
+
+  /* Ajustar el chat */
+  .flex-row-reverse {
+    flex-direction: row; /* Cambiar la dirección de los mensajes en pantallas pequeñas */
+  }
+
+  .flex-auto {
+    flex-grow: 1; /* Asegurarse de que la conversación ocupe el máximo espacio disponible */
+  }
+
+  .h-full {
+    height: auto; /* Evitar que se desborde el contenido */
+  }
+
+  .w-full {
+    width: 100%; /* Asegurar que todo ocupe el 100% del ancho */
+  }
+}
+
+@media (max-width: 480px) {
+  /* Ocultar el sidebar completamente en pantallas pequeñas */
+  .w-64 {
+    display: none;
+  }
+
+  /* Cambiar la barra de chat para que ocupe toda la pantalla */
+  .flex-auto {
+    padding: 10px;
+  }
+}

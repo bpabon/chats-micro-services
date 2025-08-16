@@ -1,59 +1,105 @@
-# ChatsMicroServices
+# Angular Frontend para Microservicios (API Gateway)
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.0.0.
+Este es un proyecto básico desarrollado con **Angular 19**, diseñado para consumir servicios expuestos por un back-end basado en microservicios centralizados mediante un **API Gateway** creado manualmente con **Node.js**.
 
-## Development server
+🔗 Repositorio del back-end: [api-gateway-micro-services](https://github.com/bpabon/api-gateway-micro-services)
 
-To start a local development server, run: p
+## ✨ Características Principales
 
-```bash
-ng serve
-```
+- 🔗 **Consumo de servicios REST y WebSockets**
+- 🧠 **Intercepción automática de tokens JWT** mediante interceptores
+- 🔁 **Reintentos automáticos** en peticiones HTTP fallidas (hasta 3 intentos)
+- 🛡️ **Protección de rutas** con Guards para rutas públicas y privadas
+- 🔐 **Autenticación completa**:
+  - Login
+  - Registro de usuarios
+  - Actualización de contraseña mediante token por URL
+  - Vista para restablecer contraseña
+- 🌗 **Modo claro y oscuro**, con cambios de color personalizables
+- 📱 **Diseño completamente responsive**
+- 💾 **Uso de LocalStorage** para almacenar el JWT
+- 🚀 **Preparado para despliegue en Netlify**
+- 🎨 **UI moderna** con integración de [Tailwind CSS](https://tailwindcss.com/)
+- 💬 **Componente de chat básico** utilizando WebSockets
+- 📊 **Componente de tabla interactiva** para visualizar datos
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+## ⚙️ Tecnologías Utilizadas
 
-## Code scaffolding
+- **Angular 19**
+- **Tailwind CSS**
+- **Node.js** (para el backend)
+- **WebSockets**
+- **JWT**
+- **LocalStorage**
+- **Netlify**
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+## 📡 Funcionalidad del Proyecto
 
-```bash
-ng generate component component-name
-```
+Este frontend establece una comunicación básica con el backend mediante:
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+### HTTP
 
-```bash
-ng generate --help
-```
+- Se realizan llamadas HTTP autenticadas utilizando un token JWT almacenado en `localStorage`.
+- Las peticiones fallidas se reintentan automáticamente hasta 3 veces usando un interceptor personalizado.
 
-## Building
+### WebSockets
 
-To build the project run:
+- Se establece una conexión de socket básica.
+- Emite mensajes a través de la conexión.
+- La implementación actual es funcional pero **requiere mejoras para una gestión óptima** (como manejo de reconexión, cierre limpio, etc.).
 
-```bash
-ng build
-```
+## 🔐 Sistema de Autenticación
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+Incluye un flujo completo de autenticación con funcionalidades clave:
 
-## Running unit tests
+- **Login**: ingreso con verificación de JWT.
+- **Registro**: creación de nuevos usuarios.
+- **Protección de rutas**: mediante `canActivate` se restringe el acceso a vistas privadas solo a usuarios autenticados.
+- **Recuperación de contraseña**:
+  - Vista para solicitar restablecimiento de contraseña.
+  - Enlace enviado por correo con token para establecer nueva contraseña.
+  - Vista protegida para cambio de contraseña mediante token en URL.
 
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+## 🧩 Componentes Principales
 
-```bash
-ng test
-```
+### 🗨️ Vista de Chat
 
-## Running end-to-end tests
+- Componente que establece conexión WebSocket con el backend.
+- Permite enviar mensajes al servidor y visualizarlos en tiempo real.
 
-For end-to-end (e2e) testing, run:
+### 📋 Vista de Tabla Interactiva
 
-```bash
-ng e2e
-```
+- Componente que muestra datos en una tabla dinámica.
+- Incluye ordenamiento, paginación y visualización responsiva.
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+## 🧪 Estado del Proyecto
 
-## Additional Resources
+> Este es un proyecto de base para explorar la arquitectura de microservicios y el uso de API Gateways. No está pensado aún como un producto final, sino como una prueba de concepto en evolución.
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+## 🚀 Despliegue
+
+El proyecto está **preparado para ser desplegado en Netlify**. Simplemente realiza un push a tu repositorio conectado y Netlify se encargará del resto.
+
+## 🛠️ Instalación y Ejecución
+
+1. Clona el repositorio:
+  ```bash
+   git clone https://github.com/bpabon/chats-micro-services.git
+   cd chats-micro-services
+  ```
+2. Instala las dependencias:
+  ```bash
+   npm install
+  ```
+3. Inicia el servidor de desarrollo::
+  ```bash
+   ng serve
+  ```
+
+##  📌 Consideraciones
+- El token JWT se almacena de forma local para persistencia de sesión.
+- Se recomienda implementar mejoras de seguridad para producción (manejo de errores más avanzado).
+- La conexión por socket debe optimizarse para manejo de reconexiones, cierre limpio y manejo de errores entre otras. 
+
+## 🧑‍💻 Autor
+- Desarrollado por [bpabon](https://github.com/bpabon).

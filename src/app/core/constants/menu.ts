@@ -11,7 +11,7 @@ export class Menu {
           label: 'Dashboard',
           route: '/dashboard',
           children: [
-            // { label: 'Nfts', route: '/dashboard/nfts' },
+            { label: 'Chats', route: '/home/dashboard/chat' },
             // { label: 'Podcast', route: '/dashboard/podcast' },
           ],
         },
@@ -40,7 +40,7 @@ export class Menu {
           icon: 'icons/heroicons/outline/cube.svg',
           label: 'Components',
           route: '/components',
-          children: [{ label: 'Table', route: '/components/table' }],
+          children: [{ label: 'Table', route: '/home/components/table' }],
         },
       ],
     },
