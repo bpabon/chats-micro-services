@@ -84,8 +84,8 @@ El proyecto está **preparado para ser desplegado en Netlify**. Simplemente real
 
 1. Clona el repositorio:
   ```bash
-   git clone https://github.com/bpabon/chats-micro-services.git
-   cd chats-micro-services
+   git clone https://github.com/bpabon/front-end-micro-services.git
+   cd front-end-micro-services
   ```
 2. Instala las dependencias:
   ```bash
